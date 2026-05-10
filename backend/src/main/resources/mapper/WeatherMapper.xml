@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smogwatch.mapper.WeatherMapper">
+    <insert id="insertWeather" parameterType="com.smogwatch.entity.WeatherSnapshot" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO weather_snapshot(city_name, temp, feels_like, humidity, weather_text, wind_class, wind_dir, aqi, pm25, observed_at_text, raw_json, observed_at)
+        VALUES(#{cityName}, #{temp}, #{feelsLike}, #{humidity}, #{weatherText}, #{windClass}, #{windDir}, #{aqi}, #{pm25}, #{observedAtText}, #{rawJson}, NOW())
+    </insert>
+
+    <select id="findByCityAndDate" resultType="com.smogwatch.entity.WeatherSnapshot">
+        SELECT id, city_name, temp, feels_like, humidity, weather_text, wind_class, wind_dir, aqi, pm25, observed_at_text, raw_json, observed_at
+        FROM weather_snapshot
+        WHERE city_name = #{cityName}
+          AND DATE(observed_at) = #{date}
+        ORDER BY observed_at DESC
+    </select>
+</mapper>

@@ -1,0 +1,43 @@
+# Maven / Java (backend)
+backend/target/
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+replay_pid*
+
+# Local Spring config (secrets / machine-specific)
+**/application-local.yml
+**/application-local.properties
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+bin/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+logs/
+
+# uni-app build output (not covered by frontend/.gitignore)
+frontend/unpackage/
+
+# Editor swap
+*.swp
+*~

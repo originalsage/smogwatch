@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smogwatch.mapper.WeatherDistrictMapper">
+    <select id="countAll" resultType="int">
+        SELECT COUNT(1) FROM weather_district
+    </select>
+
+    <insert id="insert" parameterType="com.smogwatch.entity.WeatherDistrict">
+        INSERT INTO weather_district(district_id, province, city, city_geocode, district, district_geocode, lon, lat)
+        VALUES(#{districtId}, #{province}, #{city}, #{cityGeocode}, #{district}, #{districtGeocode}, #{lon}, #{lat})
+        ON DUPLICATE KEY UPDATE
+        province = VALUES(province), city = VALUES(city), city_geocode = VALUES(city_geocode), district = VALUES(district), district_geocode = VALUES(district_geocode), lon = VALUES(lon), lat = VALUES(lat)
+    </insert>
+
+    <select id="findProvinces" resultType="string">
+        SELECT DISTINCT province FROM weather_district ORDER BY province
+    </select>
+
+    <select id="findCitiesByProvince" resultType="com.smogwatch.dto.CityOptionDTO">
+        SELECT DISTINCT city AS city, city_geocode AS cityGeocode
+        FROM weather_district
+        WHERE province = #{province}
+        ORDER BY city
+    </select>
+
+    <select id="findDistricts" resultType="com.smogwatch.dto.DistrictOptionDTO">
+        SELECT district AS district, district_id AS districtId
+        FROM weather_district
+        WHERE province = #{province}
+          AND city = #{city}
+          AND city_geocode = #{cityGeocode}
+        ORDER BY district
+    </select>
+
+    <select id="findByDistrictId" resultType="com.smogwatch.entity.WeatherDistrict">
+        SELECT id, district_id, province, city, city_geocode, district, district_geocode, lon, lat
+        FROM weather_district WHERE district_id = #{districtId}
+    </select>
+</mapper>

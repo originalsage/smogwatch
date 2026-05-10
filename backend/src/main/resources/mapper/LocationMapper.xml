@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smogwatch.mapper.LocationMapper">
+    <insert id="insertLocation" parameterType="com.smogwatch.entity.CityLocationLog" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO city_location_log(source, province, city, district, adcode, longitude, latitude, created_at)
+        VALUES(#{source}, #{province}, #{city}, #{district}, #{adcode}, #{longitude}, #{latitude}, NOW())
+    </insert>
+</mapper>

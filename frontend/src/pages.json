@@ -1,0 +1,26 @@
+{
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "雾霾探测",
+        "navigationBarBackgroundColor": "#dff6ff",
+        "navigationBarTextStyle": "black"
+      }
+    },
+    {
+      "path": "pages/detail/detail",
+      "style": {
+        "navigationBarTitleText": "天气详情",
+        "navigationBarBackgroundColor": "#dff6ff",
+        "navigationBarTextStyle": "black"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "SmogWatch",
+    "navigationBarBackgroundColor": "#dff6ff",
+    "backgroundColor": "#f0f9ff"
+  }
+}
