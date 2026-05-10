@@ -1,6 +1,19 @@
 CREATE DATABASE IF NOT EXISTS smogwatch DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE smogwatch;
 
+CREATE TABLE IF NOT EXISTS city_location_log (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  source VARCHAR(20) NOT NULL,
+  province VARCHAR(50) NULL,
+  city VARCHAR(50) NOT NULL,
+  district VARCHAR(50) NULL,
+  adcode VARCHAR(20) NULL,
+  longitude VARCHAR(30) NULL,
+  latitude VARCHAR(30) NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_created_at(created_at)
+);
+
 CREATE TABLE IF NOT EXISTS weather_snapshot (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
   city_name VARCHAR(50) NOT NULL,
